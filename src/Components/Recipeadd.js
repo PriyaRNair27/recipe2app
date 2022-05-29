@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 const Recipeadd = () => {
@@ -8,10 +9,21 @@ const Recipeadd = () => {
     const subdata=()=>{
         const data={"recipetitle":recipetitle,"category":category,"description":description,"preparedby":preparedby}
         console.log(data)
-        
+        axios.post("http://localhost:4000/api/recipeviewall",data).then(
+            (response)=>{
+            console.log(response.data)
+            if(response.data.status=="success")
+            {
+                alert("successfully added")
+            }
+            else{
+                alert("failed to added")
+            }
+        }) 
+               
     }
   return (
-    <div>
+    <div> 
         <div className="container">
     <div className="row">
         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

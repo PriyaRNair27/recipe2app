@@ -1,14 +1,19 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import Header from './Header'
 
 const Recipesearch = () => {
-    const [data,setdata]=useState("")
-    const [recipetitle,setrecipetitle]=useState([{"category":"","description":"","preapredby":""}])
+    
+    const [data,setdata]=useState([{"category":"","description":"","preparedby":""}])
+    const [recipetitle,setrecipetitle]=useState("")
     const subdata=()=>{
         const data={"recipetitle":recipetitle}
         console.log(data)
+        
         axios.post("http://localhost:4000/api/recipsearch",data).then((response)=>{
-            console.log(response.data)
+            
+            setdata(response.data.data)
+
         })
     }
     const deleteApiCall=(id)=>{
@@ -28,10 +33,11 @@ const Recipesearch = () => {
       
     }
     
-
-        return (
+    
+  return (
     <div>
-<div className="container">
+        <Header/>
+        <div className="container">
     <div className="row">
         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <div className="row g-3">
@@ -44,7 +50,6 @@ const Recipesearch = () => {
                 </div>
             </div>
 
-            
             {data.map((value,key)=>
     {
         return<div className="row g-3">
@@ -76,11 +81,10 @@ const Recipesearch = () => {
 
     })}
         </div>
+        
+      </div>
+      </div>
     </div>
-</div>
-
-    </div>
-  )
-}
+  )}
 
 export default Recipesearch

@@ -4,7 +4,7 @@ import Header from './Header'
 
 const Recipesearch = () => {
     
-    const [data,setdata]=useState([{"category":"","description":"","preparedby":""}])
+    const [data,setdata]=useState([{"image":"","category":"","description":"","preparedby":""}])
     const [recipetitle,setrecipetitle]=useState("")
     const subdata=()=>{
         const data={"recipetitle":recipetitle}
@@ -53,6 +53,11 @@ const Recipesearch = () => {
             {data.map((value,key)=>
     {
         return<div className="row g-3">
+            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    CATEGORY:
+                <input type="text" value={value.image} className="form-control"/>
+                </div>
+
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                     CATEGORY:
                 <input type="text" value={value.category} className="form-control"/>

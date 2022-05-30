@@ -3,12 +3,13 @@ import React, { useState } from 'react'
 import Header from './Header'
 
 const Recipeadd = () => {
+    var [image,setimage]=useState("")
     var [recipetitle,setrecipetitle]=useState("")
     var [category,setcategory]=useState("")
     var [description,setdesription]=useState("")
     var [preparedby,setpreparedby]=useState("")
     const subdata=()=>{
-        const data={"recipetitle":recipetitle,"category":category,"description":description,"preparedby":preparedby}
+        const data={"image":image,"recipetitle":recipetitle,"category":category,"description":description,"preparedby":preparedby}
         console.log(data)
         axios.post("http://localhost:4000/api/recipeviewall",data).then(
             (response)=>{
@@ -30,6 +31,10 @@ const Recipeadd = () => {
     <div className="row">
         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <div className="row g-3">
+            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <label for="" className="form-label">IMAGE</label>
+                    <input onChange={(e)=>{setimage(e.target.value)}}  type="text" className="form-control"/>
+                </div>
                 <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                     <label for="" className="form-label">RECIPE TITLE</label>
                     <input onChange={(e)=>{setrecipetitle(e.target.value)}}  type="text" className="form-control"/>
